@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -14,7 +15,7 @@ const getPublicUser = (user) => {
 }
 
 const addToken = async (userid) => {
-  const token = await jwt.sign({ id: userid }, "HelloThereIamDeveloper")
+  const token = await jwt.sign({ id: userid }, process.env.JWT_SECRET_KEY)
 
   const updateUserTokensStatement = `
     update users
