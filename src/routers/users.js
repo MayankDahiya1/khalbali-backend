@@ -15,7 +15,7 @@ const getPublicUser = (user) => {
 }
 
 const addToken = async (userid) => {
-  const token = await jwt.sign({ id: userid }, process.env.JWT_SECRET_KEY)
+  const token = await jwt.sign({ id: userid }, `${process.env.JWT_SECRET_KEY}`)
 
   const updateUserTokensStatement = `
     update users
