@@ -4,7 +4,7 @@ const { query } = require('../db')
 module.exports = (optional = false) => async (req, res, next) => {
   try {
     const token = req.get('Authorization').replace('Bearer ', '')
-    const { id } = await jwt.verify(token, process.env.JWT_SECRET_KEY)
+    const { id } = await jwt.verify(token, "HelloThereIamDeveloper")
     const { rows: [user] } = await query('select * from users where id = $1', [id])
     if (!user.tokens.includes(token)) {
       throw new Error()
